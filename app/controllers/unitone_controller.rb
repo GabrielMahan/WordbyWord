@@ -1,26 +1,10 @@
 include UnitoneHelper
 class UnitoneController < ApplicationController
 
-  def one
-  end
-
-  def two
-  end
-
-  def three
-  end
-
-  def four
-  end
-
-  def five
-  end
-
   def attempts
     if current_user
-      # binding.pry
       attempt_params.each do |key, value|
-        new_attempt = Attempt.create(
+        new_attempt = Attempt.create!(
           prompt_type: 'UnitOneSentence',
           prompt_id: value[:prompt_id],
           correct?: to_bool(value[:correct]),
@@ -66,12 +50,16 @@ class UnitoneController < ApplicationController
 
     return render json: {
       sentence: sentence.content.split,
-      subjects: subjects,
-      verbs: verbs,
-      objects: objects,
-      verb_prompt_id: verb_prompt_id,
-      subject_prompt_id: subject_prompt_id,
-      object_prompt_id: object_prompt_id
+      svos: {
+        subjects: subjects,
+        verbs: verbs,
+        objects: objects
+      },
+      svoIds: {
+        verbPromptId: verb_prompt_id,
+        subjectPromptId: subject_prompt_id,
+        objectPromptId: object_prompt_id
+      }
     }
   end
 
