@@ -120,57 +120,28 @@ class PracticeOneOne extends React.Component {
   render() {
     return (
       <div>
-      <NavBar/>
-        { this.state.displayFeedback ?
-          <div id="feedback"> { this.state.allCorrect ?
-              <div id="allRight"> You got it! </div>
-              : <div id="notRight"> Incorrect. View your feedback below.  </div>
-          }
-          { this.state.subjectsCorrect ?
-            <div className="feedbackMsg" id="message-single"> You got all the subjects correct. </div>
-            : <div className="feedbackMsg" id="message-single">
-            Your subject box wasn't quite right. { this.refs.subjectBox.children.length > 0 ?
-            <div> You included {Array.from(this.refs.subjectBox.children).map(function(worddiv) {
-                return <div className="littleFeedbackWord"> {worddiv.innerText} </div>
-              })} </div> :  <div> </div> }
-
-              The correct contents were {this.state.subjects.map(function(word) {
-                return <div className="littleFeedbackWord"> {word} </div>
-              })}
-            </div>
-          }
-
-      </div>
-
-      : <div id="openingPrompt"> Find the Subjects in the sentence below </div>
-  }
-        <div id="problemContainer">
-          <div className="boxContainer" id='boxContainer-single'>
-            <div className='boxHeader' id='boxHeader-single'>Subjects</div>
-            <div ref="subjectBox" className="dropBox" id="dropBox-single" onDrop={this.dropIn1} onDragOver={this.allowDrop}>
-            </div>
-          </div>
-          <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
-          <Glossary />
-        </div>
-        {this.state.allCorrect ?
-          <div id="proceedeMsg"> <a onClick={this.loadNext} href="/next"> Next&#8594;</a></div>
+        <NavBar/>
+          { this.state.displayFeedback ?
+            <Feedback allCorrect={this.state.allCorrect}  subjects={this.state.subjects} subjectsCorrect={this.state.subjectsCorrect} subjectsIncluded={this.refs.subjectBox.children}  />
           :
-          <div id="wordBox">
-            <div id="promptWrap">
-              Drag the subject(s) into the subject box, and drag the verb(s) into the verb box.
+            <div id="openingPrompt"> Find the Subjects in the sentence below </div>
+          }
+
+          <div id="problemContainer">
+            <div className="boxContainer" id='boxContainer-single'>
+              <div className='boxHeader' id='boxHeader-single'>Subjects</div>
+              <div ref="subjectBox" className="dropBox" id="dropBox-single" onDrop={this.dropIn1} onDragOver={this.allowDrop}>
+              </div>
             </div>
-            <div id="sentenceWrap">
-              <h3 className="sentence"> Sentence: <em>"{ this.state.sentence.join(" ") }"</em></h3>
-            </div>
-            <div id="submitContainer" >
-              <a href="/submit" onClick={this.handleSubmit}> submit </a>
-            </div>
-            {this.state.sentence.map( (word, i) => {
-              return <Word key= { i } dragFunction={ this.dragStart } allowDrop={this.allowDrop} reDrop={this.replaceWord} word={ word } />
-            })}
+            <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
+            <Glossary />
           </div>
-      }
+
+          {this.state.allCorrect ?
+            <div id="proceedeMsg"> <a onClick={this.loadNext} href="/next"> Next&#8594;</a></div>
+          :
+            <SentencePromptContainer handleSubmit={this.handleSubmit} sentence={this.state.sentence} dragStart={this.dragStart} allowDrop={this.allowDrop} replaceWord={this.replaceWord} />
+          }
       </div>
     )
   }
