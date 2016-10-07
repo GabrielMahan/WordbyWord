@@ -124,7 +124,8 @@ class PracticeOneTwo extends React.Component {
                         prompt_id: this.state.verbPromptId
                       }
                   }
-                })}
+                })
+              }
     this.setState({ displayFeedback: true })
   }
 

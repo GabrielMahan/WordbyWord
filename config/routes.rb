@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
+  root to: 'application#index'
   get 'practice/show'
 
   devise_for :users, controllers: { registrations: 'users/registrations'}
 
+  resources :cohorts
+  resources :assignments
 
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #DASHBOARD ROUTES
   get 'students/:id/info', to: 'students#info'
   get 'students/:id/completed_assignments', to: 'students#completed_assignments'
   get 'students/:id/past_due_assignments', to: 'students#past_due_assignments'
@@ -25,9 +28,8 @@ Rails.application.routes.draw do
   get 'cohorts/:id/assignments_info', to: 'cohorts#assignments_info'
   get 'lessons', to: 'lessons#show'
   get 'dashboard', to: 'application#dashboard'
-  resources :cohorts
-  resources :assignments
-  root to: 'application#index'
+
+
 
   get '/units/:unit_id/lessons/:lesson_id', to: "units#lesson_show"
 
