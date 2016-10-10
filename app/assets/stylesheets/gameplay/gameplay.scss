@@ -1,0 +1,168 @@
+#wordBox {
+  height: 250px;
+  width: 70%;
+  background: beige;
+  border: solid 2px black;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  color: black;
+}
+
+
+.dropBox {
+  height: 350px;
+  background-color: #FF7F5E;
+  background-repeat: none;
+  border: 3px solid #331a00;
+  border-radius: 10px;
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+}
+
+#dropBox-single {
+  width: 90%;
+  margin: 10%;
+  left: -23px;
+}
+
+
+
+
+.inBox {
+  background-color: #f5f5dc;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid black;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  display: inline-block;
+  color: black;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  font-size: 50px;
+}
+
+
+.draggable {
+  // font-size: 3em;
+  // background: url("/assets/chalkboard1.jpg");
+  background-color: #4F7599;
+  padding: 10px;
+  // margin: 10px;
+  border: 3px solid black;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  display: inline-block;
+  color: oldlace;
+  font-family: 'Oswald', sans-serif;
+  position: absolute;
+  font-size: 50px;
+
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+}
+
+.dragFootprint {
+  position: relative;;
+  z-index: 0;
+  // left: -100px;
+  font-size: 50px;
+  background-color: lightgray;
+  margin: 10px;
+  padding: 10px;
+  height: 100px;
+  border-radius: 20px;
+  font-family: 'Oswald', sans-serif;
+  display: inline-block;
+
+  // top: -120px;
+
+}
+
+
+#openingPrompt {
+  background-color: #FF7F5E;
+  // border: 2px solid black;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  margin: auto;
+  max-width:50%;
+  border-radius: 10px;
+}
+.boxHeader {
+  background: url("/assets/chalkboard1.jpg");
+  font-size: 30px;
+  border: 2px solid black;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  display: inline-block;
+  margin: auto;
+}
+
+#boxHeader-single {
+  width: 100%;
+}
+
+
+
+// feedback messages ...
+#feedback {
+  text-align: center;
+}
+
+
+
+#submitContainer {
+  // background: url("/assets/chalkboard1.jpg");
+  background-color: #4F7599;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 10px 10px 20px 30px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  border: 3px solid black;
+  float: right;
+  &:hover {
+    background-color: #1EFFF7;
+  }
+
+  a {
+    margin: auto;
+    color: white;
+    font-size: 1.5em;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+
+.boxContainer {
+  background: beige;
+  height: 450px;
+  margin: 50px auto;
+  border-radius: 20px;
+  border: solid 1px #4d2600;
+  position: relative;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+}

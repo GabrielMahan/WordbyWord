@@ -1,0 +1,21 @@
+#status-bar {
+   margin: auto;
+   width: 50%;
+   li {
+     font-size: 2em;
+   }
+}
+
+
+#status-bar ul {
+   color: white;
+   margin-left: 60px;
+}
+
+#status-bar li {
+  list-style-type: none;
+  display: inline;
+  color: white;
+  padding-right: 5px;
+  margin: 0px 20px;
+}

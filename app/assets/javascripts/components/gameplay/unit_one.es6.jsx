@@ -45,7 +45,6 @@ class UnitOne extends React.Component {
     $.get(`/${this.props.lessonId}/UnitOneSentence`).done((response) => {
       this.setState({nextSet: response})
     });
-    debugger;
   }
 
   componentWillUpdate() {
