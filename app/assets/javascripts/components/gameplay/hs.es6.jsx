@@ -1,5 +1,6 @@
 
 function handleSubmit(event) {
+  debugger;
     event.preventDefault();
     var wordsInSubjectBox = Array.from(this.refs.subjectBox.children).map(function(element) {
       return element.innerText

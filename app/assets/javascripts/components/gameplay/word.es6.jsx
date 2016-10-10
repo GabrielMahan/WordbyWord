@@ -8,7 +8,7 @@ class Word extends React.Component {
 
           <div className="dragFootprint" onDrop={this.props.reDrop} onDragOver={this.props.allowDrop}>
             {this.props.word}
-            <div className="draggable" draggable="true" onDragStart={this.props.dragFunction} >
+            <div className="draggable inPrompt" draggable="true" onDragStart={this.props.dragFunction} >
               {this.props.word}
             </div>
           </div>

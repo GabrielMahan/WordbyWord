@@ -25,7 +25,7 @@ class UnitOne extends React.Component {
         objectPromptId: 0
       }
     }
-    this.dropIn1 = this.dropIn1.bind(this);
+    this.dropInDropBox = this.dropInDropBox.bind(this);
     this.dragStart = this.dragStart.bind(this);
     this.handleSubmit = handleSubmit.bind(this);
     this.replaceWord = this.replaceWord.bind(this);
@@ -83,7 +83,7 @@ class UnitOne extends React.Component {
     if (this.state.beingDragged.innerText === ev.target.innerText) {
       ev.preventDefault();
       var dragged = this.state.beingDragged
-      dragged.className = "draggable"
+      dragged.className = "draggable inPrompt"
       ev.target.appendChild(dragged)
     }
   }
@@ -98,10 +98,10 @@ class UnitOne extends React.Component {
     ev.preventDefault();
   }
 
-  dropIn1(ev) {
+  dropInDropBox(ev) {
     ev.preventDefault();
     var dragged = this.state.beingDragged
-    dragged.className = "inBox"
+    dragged.className = "draggable inBox"
     ev.target.appendChild(dragged)
   }
 
@@ -113,7 +113,7 @@ class UnitOne extends React.Component {
           { this.state.displayFeedback ?
             <Feedback allCorrect={this.state.allCorrect}  subjects={this.state.subjects} subjectsCorrect={this.state.subjectsCorrect} subjectsIncluded={this.refs.subjectBox.children}  />
           :
-            <div id="openingPrompt"> Find the Subjects in the sentence below </div>
+            <OpeningPrompt unitId={this.props.unitId} lessonId={this.props.lessonId}/>
           }
 
           {this.state.allCorrect ?
@@ -122,35 +122,35 @@ class UnitOne extends React.Component {
             <SentencePromptContainer handleSubmit={this.handleSubmit} sentence={this.state.sentence} dragStart={this.dragStart} allowDrop={this.allowDrop} replaceWord={this.replaceWord} />
           }
 
-
-          <div id="problemContainer">
-
-
-            <div className="boxContainer" id='boxContainer-triple'>
-              { ['1','3','5'].indexOf(this.props.lessonId) >= 0 ?
-                <div className='boxHeader' id='boxHeader-triple'>Subjects
-                  <div ref="subjectBox" id="dropBox1-triple" className="dropBox" onDrop={this.dropIn1} onDragOver={this.allowDrop}></div>
+          <div className="dropBoxContainer" id=''>
+            { ['1','3','5'].indexOf(this.props.lessonId) >= 0 ?
+              <div>
+                <div> Subjects </div>
+                <div ref="subjectBox" id="subjectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop}>
                 </div>
-                : null
-              }
-              { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
-                <div className='boxHeader' id='boxHeader-triple'>Verbs
-                  <div ref="verbBox" id="dropBox2-triple" className="dropBox" onDrop={this.dropIn1} onDragOver={this.allowDrop}></div>
-                </div>
-                : null
-              }
-              { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
-                <div className='boxHeader' id='boxHeader-triple'>objects
-                  <div ref="objectBox" id="dropBox3-triple" className="dropBox" onDrop={this.dropIn1} onDragOver={this.allowDrop}></div>
-                </div>
-                : null
-              }
-            </div>
-
-
-            <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
-            <Glossary />
+              </div>
+              : null
+            }
+            { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
+              <div>
+                <div> Verbs </div>
+                <div ref="verbBox" id="verbDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
+              </div>
+              : null
+            }
+            { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
+              <div>
+                <div> Objects </div>
+                <div ref="objectBox" id="objectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
+              </div>
+              : null
+            }
           </div>
+
+
+
+          <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
+          <Glossary />
 
       </div>
     )
