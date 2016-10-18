@@ -1,0 +1,113 @@
+ #wordBox {
+  color: black;
+  background: #e7e7e7;
+  border: solid 2px black;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 320px;
+  width: 47%;
+  margin-left: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  float: left;
+}
+
+.dropBoxContainer {
+  padding: 30px;
+  float: right;
+  width: 50%;
+}
+
+.dropBox {
+  font-size: 50px;
+  text-align: center;
+  padding-top: 1  0px;
+  background-color: #B7FF6B;
+  border: 3px solid #331a00;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  height: 100px;
+  margin-bottom: 30px;
+}
+.draggable {
+  color: oldlace;
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  background-color: #4F7599;
+  border-radius: 20px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  border: 3px solid black;
+  padding: 15px;
+  height: 75px;
+  display: inline-block;
+  z-index: 3;
+
+}
+
+.inPrompt {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.inBox {
+  position: relative;
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.dragFootprint {
+  position: relative;;
+  z-index: 0;
+  font-size: 30px;
+  background-color: lightgray;
+  margin: 10px;
+  padding: 15px;
+  height: 75px;
+  border-radius: 20px;
+  font-family: 'Oswald', sans-serif;
+  display: inline-block;
+}
+
+.dbTitle {
+  font-size: 30px;
+  position: relative;
+  left: 40%;
+  top: 35px;
+  z-index: 2;
+  height: 0px;
+  opacity: .5;
+}
+
+
+#submitButton {
+  background-color: #4F7599;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  display: inline-block;
+  margin: 10px 10px 20px 30px;
+  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+  border: 3px solid black;
+  float: right;
+  &:hover {
+    background-color: #1EFFF7;
+  }
+  a {
+    margin: auto;
+    color: white;
+    font-size: 1.5em;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-family: 'Oswald', sans-serif;
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+}

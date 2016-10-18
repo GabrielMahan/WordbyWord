@@ -10,6 +10,8 @@ Word-by-word aims to fill the void with a robust, self-differentiating set of in
 
 
 ## Current Functionality
+
+![gameplay]()
 ## Updates
 * Word-by-word is undergoing extensive remodeling-
 * Styling is still inconsistent, but expect frequent changes.
