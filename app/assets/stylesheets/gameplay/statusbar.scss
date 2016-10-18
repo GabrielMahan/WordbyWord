@@ -1,23 +1,28 @@
 #status-bar {
-  //  margin: auto;
-   width: 50%;
-   background-color: blue;
+   background-color: #FFF66B;
    clear: left;
    li {
      font-size: 2em;
    }
+   color: #222;
+   width: 47%;
+   margin-left: 2%;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
+
+   border: solid 2px black;
+
 }
 
 
 #status-bar ul {
-   color: white;
    margin-left: 60px;
 }
 
 #status-bar li {
   list-style-type: none;
   display: inline;
-  color: white;
   padding-right: 5px;
   margin: 0px 20px;
 }

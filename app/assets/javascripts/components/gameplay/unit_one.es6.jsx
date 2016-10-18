@@ -125,7 +125,7 @@ class UnitOne extends React.Component {
           <div className="dropBoxContainer" id=''>
             { ['1','3','5'].indexOf(this.props.lessonId) >= 0 ?
               <div>
-                <div> Subjects </div>
+                <div className="dbTitle"> Subjects </div>
                 <div ref="subjectBox" id="subjectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop}>
                 </div>
               </div>
@@ -133,14 +133,14 @@ class UnitOne extends React.Component {
             }
             { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
               <div>
-                <div> Verbs </div>
+                <div className="dbTitle"> Verbs </div>
                 <div ref="verbBox" id="verbDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
               </div>
               : null
             }
             { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
               <div>
-                <div> Objects </div>
+                <div className="dbTitle"> Objects </div>
                 <div ref="objectBox" id="objectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
               </div>
               : null

@@ -1,16 +1,16 @@
-#wordBox {
+ #wordBox {
   color: black;
   background: #e7e7e7;
-
   border: solid 2px black;
-  // border-radius: 20px;
   box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin: 20px auto;
-  height: 250px;
-  width: 50%;
+  height: 320px;
+  width: 47%;
+  margin-left: 2%;
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: block;
   float: left;
 }
@@ -25,10 +25,8 @@
   font-size: 50px;
   text-align: center;
   padding-top: 1  0px;
-  color: rgba(0, 0, 0, .3);
-  background-color: #FF7F5E;
+  background-color: #B7FF6B;
   border: 3px solid #331a00;
-  // border-radius: 10px;
   box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
   height: 100px;
   margin-bottom: 30px;
@@ -44,7 +42,8 @@
   padding: 15px;
   height: 75px;
   display: inline-block;
-  z-index: 2;
+  z-index: 3;
+
 }
 
 .inPrompt {
@@ -54,8 +53,10 @@
 }
 
 .inBox {
-  position: static;
+  position: relative;
+  float: left;
   margin-top: 5px;
+  margin-left: 10px;
 }
 
 .dragFootprint {
@@ -69,6 +70,16 @@
   border-radius: 20px;
   font-family: 'Oswald', sans-serif;
   display: inline-block;
+}
+
+.dbTitle {
+  font-size: 30px;
+  position: relative;
+  left: 40%;
+  top: 35px;
+  z-index: 2;
+  height: 0px;
+  opacity: .5;
 }
 
 
