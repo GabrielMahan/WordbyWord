@@ -1,9 +1,7 @@
 class User < ApplicationRecord
   validates :last_name, presence: true, length: { maximum: 50}
   validates :email, presence: true, length: { maximum: 50 }
-
-   validates :email, presence: true, length: { maximum: 255 },
-                       uniqueness: { case_sensitive: false }
+  validates :email, presence: true, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
 
     def attempts_by_lesson(lesson)
       prompt_ids = lesson.prompt_ids
