@@ -1,6 +1,6 @@
 <div class="top-nav">
   <div class="container">
-    <div class="nav-wrapper"><h1 class="page-title white-text">Word by Word</h1></div>
+    <div class="nav-wrapper"><h1 class="page-title white-text">Word by Word </h1></div>
   </div>
 </div>
 
@@ -24,13 +24,22 @@
 
     <div class="col s12 m6">
       <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
+
+        <div class="card-image white-text">
+          <img src="http://www.w3schools.com/css/img_fjords.jpg" >
           <span class="card-title">Quick Demo</span>
+        </div>
+
+        <div class="card-content white-text">
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+
 
           <div class="card-action">
             <a href="/demo" > Quick Demo </a>
           </div>
-        </div>
+
       </div>
     </div>
 
@@ -42,22 +51,29 @@
         <div class="card-content white-text">
           <span class="card-title">Login</span>
           <%= form_for(:user, :url => session_path(:user)) do |f| %>
-            <%= f.label :email, class: 'txtLbl' %>
-            <%= f.text_field :email, id: 'icon_prefix' %>
-            <br>
-            <br>
-            <%= f.label :password, html: {class: 'txtLbl'} %>
-            <%= f.password_field :password, html: {class: 'txtIn'} %>
-            <br>
-            <br>
-            <%= f.submit 'Sign in' , class: 'waves-effect waves-light btn' %>
-            <a class="waves-effect waves-light btn" href='/users/sign_up'> Create an account</a>
-            <br>
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-            <br>
-            <br>
+
+            <%= f.label :email, class: 'validate' %>
+            <%= f.text_field :email %>
+
+            <%= f.label :password %>
+            <%= f.password_field :password, html: {class: 'validate'} %>
+
+            <div class="row">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+            <div class="row">
+              <div class="col s3 ">
+                <%= f.submit 'Sign in' , class: 'waves-effect waves-light btn' %>
+              </div>
+              <div class="col s8">
+              </div>
+
+
+            </div>
+
             <div class="card-action">
+              <a class="" href='/users/sign_up'> Create an account </a>
               <%= link_to "Forgot your password?", new_password_path(:user) %>
             </div>
           <% end %>
@@ -65,3 +81,10 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+  </script>
