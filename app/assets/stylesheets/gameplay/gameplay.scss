@@ -1,24 +1,21 @@
- #wordBox {
-  color: black;
-  background: #e7e7e7;
-  border: solid 2px black;
-  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  height: 320px;
-  width: 47%;
-  margin-left: 2%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  display: block;
-  float: left;
+
+.unitOneContainer {
+  margin-top: 100px;
 }
 
 .dropBoxContainer {
   padding: 30px;
-  float: right;
-  width: 50%;
+}
+
+.senLabel{
+  padding: 10px;
+  position: absolute;
+}
+
+.card-content.senDb {
+  height: 280px;
+  // background: blue;
+  padding-top: 60px;
 }
 
 .dropBox {
@@ -35,10 +32,10 @@
   color: oldlace;
   font-family: 'Oswald', sans-serif;
   font-size: 30px;
-  background-color: #4F7599;
+  background-color: teal;
   border-radius: 20px;
-  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
-  border: 3px solid black;
+  box-shadow: 5px 5px 20px -5px rgba(0,0,0,0.75);
+  // border: 3px solid black;
   padding: 15px;
   height: 75px;
   display: inline-block;

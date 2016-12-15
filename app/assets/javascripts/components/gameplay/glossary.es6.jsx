@@ -33,8 +33,8 @@ class Glossary extends React.Component {
       <div id="glossaryContainer">
       {this.state.showGlossary ?
         <div id="glossaryFill">
-          <div id="backButton" className="glossaryButton" onClick={this.toggleGlossary}>
-            Back!
+          <div id="helpButton" className=" btn-floating btn-large waves-effect waves-light yellow black-text" onClick={this.toggleGlossary}>
+            Back
           </div>
           <div id="helpPageContainer">
             <div ref="glossaryList" id="glossaryList" >
@@ -52,8 +52,8 @@ class Glossary extends React.Component {
           </div>
         </div>
       :
-        <div id="helpButton" className="glossaryButton" onClick={this.toggleGlossary}>
-          Help!
+        <div id="helpButton" className=" btn-floating btn-large waves-effect waves-light red" onClick={this.toggleGlossary}>
+          Help
         </div>
       }
       </div>

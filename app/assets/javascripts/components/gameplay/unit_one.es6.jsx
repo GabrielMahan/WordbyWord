@@ -110,49 +110,74 @@ class UnitOne extends React.Component {
     return (
       <div>
         <NavBar/>
-          { this.state.displayFeedback ?
-            <Feedback allCorrect={this.state.allCorrect}  subjects={this.state.subjects} subjectsCorrect={this.state.subjectsCorrect} subjectsIncluded={this.refs.subjectBox.children}  />
-          :
-            <OpeningPrompt unitId={this.props.unitId} lessonId={this.props.lessonId}/>
-          }
+        <div className="unitOneContainer">
 
-          {this.state.allCorrect ?
-            <div id="proceedeMsg"> <a onClick={this.loadNext} href="/next"> Next&#8594;</a></div>
-            :
-            <SentencePromptContainer handleSubmit={this.handleSubmit} sentence={this.state.sentence} dragStart={this.dragStart} allowDrop={this.allowDrop} replaceWord={this.replaceWord} />
-          }
+        <div className="row">
+          <div className="col s6">
+            <div className="card large">
+              <div className="card-content">
+                <span className="card-title">Sort the words in the sentence</span>
+
+                { this.state.displayFeedback ?
+                  <Feedback allCorrect={this.state.allCorrect}  subjects={this.state.subjects} subjectsCorrect={this.state.subjectsCorrect} subjectsIncluded={this.refs.subjectBox.children}  />
+                :
+                  null
+                }
+
+                {this.state.allCorrect ?
+                  null
+                  :
+                  <SentencePromptContainer handleSubmit={this.handleSubmit} sentence={this.state.sentence} dragStart={this.dragStart} allowDrop={this.allowDrop} replaceWord={this.replaceWord} />
+                }
+
+              </div>
+            <div className="card-action">
+              {this.state.allCorrect ? <a className="waves-effect waves-light btn" onClick={this.loadNext} href="/next"> Next&#8594;</a> : <a href="" className="waves-effect waves-light btn" onClick={this.handleSubmit}> submit </a> }
+            </div>
+          </div>
+          <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
+        </div>
+
+        <div className="col s6">
 
           <div className="dropBoxContainer" id=''>
             { ['1','3','5'].indexOf(this.props.lessonId) >= 0 ?
-              <div>
-                <div className="dbTitle"> Subjects </div>
-                <div ref="subjectBox" id="subjectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop}>
+              <div className="card small">
+                <span className="card-title senLabel">Subjects</span>
+                <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="subjectBox">
                 </div>
+
               </div>
               : null
             }
             { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
-              <div>
-                <div className="dbTitle"> Verbs </div>
-                <div ref="verbBox" id="verbDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
-              </div>
+                <div className="card small">
+                  <span className="card-title senLabel">Verbs</span>
+                  <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="verbBox" />
+                </div>
+
               : null
             }
             { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
               <div>
-                <div className="dbTitle"> Objects </div>
-                <div ref="objectBox" id="objectDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
+                <div className="dbTitle"> objects </div>
+                <div ref="objectBox" id="verbDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
               </div>
               : null
             }
           </div>
 
 
+        </div>
 
-          <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
           <Glossary />
+        </div>
+      </div>
 
       </div>
     )
   }
 }
+
+
+// <OpeningPrompt unitId={this.props.unitId} lessonId={this.props.lessonId}/>
