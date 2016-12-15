@@ -5,8 +5,8 @@
 
 
 
- // @import "bootstrap-sprockets";
- // @import "bootstrap";
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
 @import "materialize";
 
 
@@ -75,6 +75,10 @@ a {
    &:hover{
      color: white;
    }
+}
+
+h1.navbar-title {
+  color: dodgerblue;
 }
 
 .header {
