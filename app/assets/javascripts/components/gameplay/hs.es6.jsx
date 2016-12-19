@@ -1,4 +1,3 @@
-
 function handleSubmit(event) {
     event.preventDefault();
     var instantFeedback = {subjects: false, verbs: false, objects: false};

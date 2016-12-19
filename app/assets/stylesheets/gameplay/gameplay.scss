@@ -18,16 +18,6 @@
   padding-top: 60px;
 }
 
-.dropBox {
-  font-size: 50px;
-  text-align: center;
-  padding-top: 1  0px;
-  background-color: #8C997D;
-  border: 3px solid #331a00;
-  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
-  height: 100px;
-  margin-bottom: 30px;
-}
 .draggable {
   color: oldlace;
   font-family: 'Oswald', sans-serif;
@@ -67,44 +57,4 @@
   border-radius: 20px;
   font-family: 'Oswald', sans-serif;
   display: inline-block;
-}
-
-.dbTitle {
-  font-size: 30px;
-  position: relative;
-  left: 40%;
-  top: 35px;
-  z-index: 2;
-  height: 0px;
-  opacity: .5;
-}
-
-
-#submitButton {
-  background-color: #4F7599;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  display: inline-block;
-  margin: 10px 10px 20px 30px;
-  box-shadow: 10px 10px 32px -5px rgba(0,0,0,0.75);
-  border: 3px solid black;
-  float: right;
-  &:hover {
-    background-color: #1EFFF7;
-  }
-  a {
-    margin: auto;
-    color: white;
-    font-size: 1.5em;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 20px;
-    font-family: 'Oswald', sans-serif;
-    text-decoration: none;
-    &:hover {
-      color: black;
-    }
-  }
 }

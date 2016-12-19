@@ -28,8 +28,7 @@ class Feedback extends React.Component {
           wordPart="subjects" included={this.props.objectsIncluded}
           required={this.props.objects}
         />
-
-
+      
       </div>
     )
   }
