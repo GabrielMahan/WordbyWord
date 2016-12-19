@@ -16,6 +16,8 @@ class UnitsController < ApplicationController
 
   def lesson_show
     @lesson_id = params[:lesson_id]
+    @user_signed_in = user_signed_in?
+
     render :"unitone/show"
   end
 end

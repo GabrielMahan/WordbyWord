@@ -1,2 +1,2 @@
-<%= react_component('NavBar') %>
-<%= react_component('TeacherDashboard', teacherId: @teacher.id) %>
+<%= react_component('NavBar', {userSignedIn: @user_signed_in}) %>
+<%= react_component('TeacherDashboard', {teacherId: @teacher.id}) %>

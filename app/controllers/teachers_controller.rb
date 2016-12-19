@@ -1,6 +1,7 @@
 class TeachersController < ApplicationController
   def show
     @teacher = Teacher.find_by_id(params[:id])
+    @user_signed_in = user_signed_in?
     redirect_to(root_url) unless @teacher && (current_user == @teacher)
   end
 

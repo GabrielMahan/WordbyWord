@@ -1,3 +1,7 @@
 
 
-<%= react_component('UnitOne', {lessonId: @lesson_id, unitId: 1}) %>
+<%= react_component('UnitOne', {
+  lessonId: @lesson_id,
+  unitId: 1,
+  userSignedIn: @user_signed_in
+}) %>

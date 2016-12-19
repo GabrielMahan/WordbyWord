@@ -113,7 +113,7 @@ class UnitOne extends React.Component {
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar userSignedIn={this.props.userSignedIn} />
         <div className="unitOneContainer">
 
         <div className="row">

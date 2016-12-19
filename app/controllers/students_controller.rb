@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   def show
     @student = Student.find_by_id(params[:id])
+    @user_signed_in = user_signed_in?
     teachers = @student.cohorts.map { |cohort| cohort.teachers }.flatten if @student
     redirect_to(root_url) unless @student && ((current_user == @student) || teachers.include?(current_user))
   end
