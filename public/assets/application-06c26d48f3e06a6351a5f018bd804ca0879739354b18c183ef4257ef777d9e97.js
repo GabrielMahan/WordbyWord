@@ -35729,10 +35729,17 @@ var NavBar = (function (_React$Component) {
   function NavBar() {
     _classCallCheck(this, NavBar);
 
-    _get(Object.getPrototypeOf(NavBar.prototype), "constructor", this).apply(this, arguments);
+    _get(Object.getPrototypeOf(NavBar.prototype), "constructor", this).call(this);
+    this.state = { userSignedIn: null };
   }
 
   _createClass(NavBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({ userSignedIn: this.props.userSignedIn });
+      // debugger;
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -35777,11 +35784,15 @@ var NavBar = (function (_React$Component) {
             React.createElement(
               "li",
               { className: "navbar-buttons" },
-              React.createElement(
+              this.state.userSignedIn ? React.createElement(
                 "form",
                 { method: "post", action: "/users/sign_out" },
                 React.createElement("input", { className: "navbar-links logout-button", type: "Submit", value: "Log Out" }),
                 React.createElement("input", { type: "hidden", name: "_method", value: "Delete" })
+              ) : React.createElement(
+                "a",
+                { className: "navbar-links", href: "/users/sign_in" },
+                " Sign In "
               )
             )
           )
@@ -38487,7 +38498,7 @@ var UnitOne = (function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(NavBar, null),
+        React.createElement(NavBar, { userSignedIn: this.props.userSignedIn }),
         React.createElement(
           'div',
           { className: 'unitOneContainer' },

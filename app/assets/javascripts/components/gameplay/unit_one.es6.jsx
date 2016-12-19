@@ -22,14 +22,11 @@ class UnitOne extends React.Component {
         subjectPromptId: 0,
         objectPromptId: 0
       }
-    }
-    this.dropInDropBox = this.dropInDropBox.bind(this);
+    };
     this.dragStart = this.dragStart.bind(this);
     this.handleSubmit = handleSubmit.bind(this);
-    this.replaceWord = this.replaceWord.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.loadNext = this.loadNext.bind(this);
-
+    this.loadNext = loadNext.bind(this);
   }
 
   componentDidMount() {
@@ -54,61 +51,11 @@ class UnitOne extends React.Component {
     })
   }
 
-  loadNext(ev) {
-    ev.preventDefault();
-    this.setState({
-      sentence: this.state.nextSet.sentence,
-      svos: this.state.nextSet.svos,
-      svoIds: this.state.nextSet.svoIds,
-      allCorrect: false,
-      displayFeedback: false,
-      svoFeedback: {
-        subjectsCorrect: false,
-        verbsCorrect: false,
-        objectsCorrect: false
-      }
-    })
-    $.get(`/${this.props.lessonId}/UnitOneSentence`).done((response)=> {
-      this.setState({nextSet: response})
-    })
-    if (  ['1','3','5'].indexOf(this.props.lessonId) >= 0) {
-      this.refs.subjectBox.innerHTML = '' ;
-    }
-    if (  ['2','3','5'].indexOf(this.props.lessonId) >= 0) {
-      this.refs.verbBox.innerHTML = '';
-    }
-    if (  ['4','5'].indexOf(this.props.lessonId) >= 0 ) {
-      this.refs.objectBox.innerHTML = '';
-    }
-  }
-
-
-  replaceWord(ev) {
-    if (this.state.beingDragged.innerText === ev.target.innerText) {
-      ev.preventDefault();
-      var dragged = this.state.beingDragged
-      dragged.className = "draggable inPrompt"
-      ev.target.appendChild(dragged)
-    }
-  }
-
   dragStart(ev) {
     this.setState({
       beingDragged: ev.target
     })
   }
-
-  allowDrop(ev) {
-    ev.preventDefault();
-  }
-
-  dropInDropBox(ev) {
-    ev.preventDefault();
-    var dragged = this.state.beingDragged
-    dragged.className = "draggable inBox"
-    ev.target.appendChild(dragged)
-  }
-
 
   render() {
     return (
@@ -124,20 +71,20 @@ class UnitOne extends React.Component {
 
                 { this.state.displayFeedback ?
                   <Feedback
-
                     allCorrect={this.state.allCorrect}
-                    subjects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
+                    lessonId={this.props.lessonId}
+
+                    subjects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.subjects : null }
                     subjectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
-                    subjectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
+                    subjectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.subjectBox.children : null }
 
-                    verbs={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
-                    verbsCorrect={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
-                    verbsIncluded={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
+                    verbs={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.verbs : null }
+                    verbsCorrect={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.verbsCorrect : null }
+                    verbsIncluded={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.verbBox.children : null }
 
-                    objects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
-                    objectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
-                    objectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
-
+                    objects={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.objects : null }
+                    objectsCorrect={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.state.objectsCorrect : null }
+                    objectsIncluded={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.objectBox.children : null }
                   />
                 : null
                 }
@@ -148,8 +95,8 @@ class UnitOne extends React.Component {
                       handleSubmit={this.handleSubmit}
                       sentence={this.state.sentence}
                       dragStart={this.dragStart}
-                      allowDrop={this.allowDrop}
                       replaceWord={this.replaceWord}
+                      beingDragged={this.state.beingDragged}
                     />
                 }
 
@@ -160,39 +107,19 @@ class UnitOne extends React.Component {
                   : <a href="" className="waves-effect waves-light btn" onClick={this.handleSubmit}> submit </a> }
               </div>
             </div>
-            <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
+            <StatusBar
+              streak={this.state.streak}
+              totalCorrect={this.state.totalCorrect}
+              totalAttempts={this.state.totalAttempts} />
           </div>
 
           <div className="col s6">
-            <div className="dropBoxContainer" id=''>
-              { ['1','3','5'].indexOf(this.props.lessonId) >= 0
-                ? <div className="card small">
-                    <span className="card-title senLabel">Subjects</span>
-                    <div
-                      className="card-content senDb"
-                      onDrop={this.dropInDropBox}
-                      onDragOver={this.allowDrop}
-                      ref="subjectBox">
-                    </div>
-                  </div>
-                : null
-              }
-              { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
-                  <div className="card small">
-                    <span className="card-title senLabel">Verbs</span>
-                    <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="verbBox" />
-                  </div>
-
-                : null
-              }
-              { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
-                <div className="card small">
-                  <span className="card-title senLabel">Objects</span>
-                  <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="objectBox" />
-                </div>
-                : null
-              }
-            </div>
+            <DropBoxes
+              ref="dropBoxes"
+              lessonId={this.props.lessonId}
+              beingDragged={this.state.beingDragged}
+              lessonId={this.props.lessonId}
+             />
           </div>
 
           <Glossary />

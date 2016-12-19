@@ -1,9 +1,10 @@
 function handleSubmit(event) {
+    // debugger;
     event.preventDefault();
     var instantFeedback = {subjects: false, verbs: false, objects: false};
 
     if (this.props.lessonId == 1 || this.props.lessonId == 3 || this.props.lessonId == 5) {
-      var wordsInSubjectBox = Array.from(this.refs.subjectBox.children).map(function(element) {
+      var wordsInSubjectBox = Array.from(this.refs.dropBoxes.refs.subjectBox.children).map(function(element) {
         return element.innerText
       })
 
@@ -14,7 +15,7 @@ function handleSubmit(event) {
     }
 
     if (this.props.lessonId == 2 || this.props.lessonId == 3 || this.props.lessonId == 5) {
-      var wordsInVerbBox = Array.from(this.refs.verbBox.children).map(function(element) {
+      var wordsInVerbBox = Array.from(this.refs.dropBoxes.refs.verbBox.children).map(function(element) {
         return element.innerText
       })
 
@@ -25,7 +26,7 @@ function handleSubmit(event) {
     }
 
     if ( this.props.lessonId == 4  || this.props.lessonId == 5) {
-      var wordsInObjectBox = Array.from(this.refs.objectBox.children).map(function(element) {
+      var wordsInObjectBox = Array.from(this.refs.dropBoxes.refs.objectBox.children).map(function(element) {
         return element.innerText
       })
 
@@ -118,4 +119,32 @@ function handleSubmit(event) {
     }
 
     this.setState({ displayFeedback: true })
+  }
+
+  function loadNext(ev) {
+    ev.preventDefault();
+    this.setState({
+      sentence: this.state.nextSet.sentence,
+      svos: this.state.nextSet.svos,
+      svoIds: this.state.nextSet.svoIds,
+      allCorrect: false,
+      displayFeedback: false,
+      svoFeedback: {
+        subjectsCorrect: false,
+        verbsCorrect: false,
+        objectsCorrect: false
+      }
+    })
+    $.get(`/${this.props.lessonId}/UnitOneSentence`).done((response)=> {
+      this.setState({nextSet: response})
+    })
+    if (  ['1','3','5'].indexOf(this.props.lessonId) >= 0) {
+      this.refs.dropBoxes.refs.subjectBox.innerHTML = '' ;
+    }
+    if (  ['2','3','5'].indexOf(this.props.lessonId) >= 0) {
+      this.refs.dropBoxes.refs.verbBox.innerHTML = '';
+    }
+    if (  ['4','5'].indexOf(this.props.lessonId) >= 0 ) {
+      this.refs.dropBoxes.refs.objectBox.innerHTML = '';
+    }
   }
