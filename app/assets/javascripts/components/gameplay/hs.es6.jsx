@@ -1,5 +1,5 @@
 function handleSubmit(event) {
-    // debugger;
+    debugger;
     event.preventDefault();
     var instantFeedback = {subjects: false, verbs: false, objects: false};
 

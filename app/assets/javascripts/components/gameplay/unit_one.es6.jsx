@@ -75,15 +75,15 @@ class UnitOne extends React.Component {
                     lessonId={this.props.lessonId}
 
                     subjects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.subjects : null }
-                    subjectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
+                    subjectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.subjectsCorrect : null }
                     subjectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.subjectBox.children : null }
 
                     verbs={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.verbs : null }
-                    verbsCorrect={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.verbsCorrect : null }
+                    verbsCorrect={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.verbsCorrect : null }
                     verbsIncluded={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.verbBox.children : null }
 
                     objects={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.objects : null }
-                    objectsCorrect={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.state.objectsCorrect : null }
+                    objectsCorrect={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.objectsCorrect : null }
                     objectsIncluded={ ['4','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.objectBox.children : null }
                   />
                 : null
