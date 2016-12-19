@@ -5,26 +5,30 @@ class Feedback extends React.Component {
     return (
       <div id="feedback">
         { this.props.allCorrect ?
-            <div id="allRight"> You got it! </div>
+          <div> You got it! </div>
         :
-            <div id="notRight"> Incorrect. View your feedback below.  </div>
+          <div> Incorrect. View your feedback below. </div>
         }
 
-        { this.props.subjectsCorrect ?
-            <div className="feedbackMsg" id="message-single"> You got all the subjects correct. </div>
-        :
-            <div className="feedbackMsg" id="message-single">
-              Your subject box wasn't quite right.
-              { this.props.subjectsIncluded.length > 0 ?
-                  <div> You included {Array.from(this.props.subjectsIncluded).map(function(worddiv) {
-                      return <div className="littleFeedbackWord"> {worddiv.innerText} </div>
-                    })} </div> :  <div> </div> }
 
-                The correct contents were {this.props.subjects.map(function(word) {
-                  return <div className="littleFeedbackWord"> {word} </div>
-                })}
-            </div>
-        }
+        <FeedbackMessage
+          correct={this.props.subjectsCorrect}
+          wordPart="subjects" included={this.props.subjectsIncluded}
+          required={this.props.subjects}
+        />
+
+        <FeedbackMessage
+          correct={this.props.verbsCorrect}
+          wordPart="subjects" included={this.props.verbsIncluded}
+          required={this.props.verbs}
+        />
+
+        <FeedbackMessage
+          correct={this.props.objectsCorrect}
+          wordPart="subjects" included={this.props.objectsIncluded}
+          required={this.props.objects}
+        />
+
 
       </div>
     )

@@ -3,8 +3,6 @@
  //= require_tree .
 */
 
-
-
  @import "bootstrap-sprockets";
  @import "bootstrap";
 @import "materialize";
@@ -12,7 +10,6 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
-  // font-family: 'Open Sans', sans-serif;
 }
 
 h3.sentence {
@@ -28,7 +25,6 @@ body {
   font-family: 'Muli', sans-serif;
   background-color: dodgerblue;
   background-repeat: none;
-  // background: url("/assets/chalkboard_4.jpg");
 }
 
 #nb {

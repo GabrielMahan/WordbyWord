@@ -1,18 +1,12 @@
 
 function handleSubmit(event) {
-  // debugger;
     event.preventDefault();
-    var thig = 12342323;
     var instantFeedback = {subjects: false, verbs: false, objects: false};
-
-
 
     if (this.props.lessonId == 1 || this.props.lessonId == 3 || this.props.lessonId == 5) {
       var wordsInSubjectBox = Array.from(this.refs.subjectBox.children).map(function(element) {
         return element.innerText
       })
-
-      console.log("subjects", wordsInSubjectBox)
 
       if (wordsInSubjectBox.sort().join() === this.state.svos.subjects.sort().join() ) {
         this.setState({subjectsCorrect: true})
@@ -42,7 +36,6 @@ function handleSubmit(event) {
       }
     }
 
-    // debugger;
 
     if (this.props.lessonId == 1 && instantFeedback.subjects) {
       this.setState({allCorrect: true})

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :cohorts
   resources :assignments
 
+  #demo
+  # get '/demo', to: 
 
   #DASHBOARD ROUTES
   get 'students/:id/info', to: 'students#info'

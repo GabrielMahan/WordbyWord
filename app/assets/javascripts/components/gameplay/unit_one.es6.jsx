@@ -1,5 +1,3 @@
-
-// import { handleSubmit } from 'hs'
 class UnitOne extends React.Component {
   constructor() {
     super();
@@ -73,9 +71,15 @@ class UnitOne extends React.Component {
     $.get(`/${this.props.lessonId}/UnitOneSentence`).done((response)=> {
       this.setState({nextSet: response})
     })
-    this.refs.subjectBox.innerHTML = "";
-    this.refs.verbBox.innerHTML = "";
-    this.refs.objectBox.innerHTML = "";
+    if (  ['1','3','5'].indexOf(this.props.lessonId) >= 0) {
+      this.refs.subjectBox.innerHTML = '' ;
+    }
+    if (  ['2','3','5'].indexOf(this.props.lessonId) >= 0) {
+      this.refs.verbBox.innerHTML = '';
+    }
+    if (  ['4','5'].indexOf(this.props.lessonId) >= 0 ) {
+      this.refs.objectBox.innerHTML = '';
+    }
   }
 
 
@@ -119,65 +123,82 @@ class UnitOne extends React.Component {
                 <span className="card-title">Sort the words in the sentence</span>
 
                 { this.state.displayFeedback ?
-                  <Feedback allCorrect={this.state.allCorrect}  subjects={this.state.subjects} subjectsCorrect={this.state.subjectsCorrect} subjectsIncluded={this.refs.subjectBox.children}  />
-                :
-                  null
+                  <Feedback
+
+                    allCorrect={this.state.allCorrect}
+                    subjects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
+                    subjectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
+                    subjectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
+
+                    verbs={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
+                    verbsCorrect={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
+                    verbsIncluded={ ['2','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
+
+                    objects={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null }
+                    objectsCorrect={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null }
+                    objectsIncluded={ ['1','3','5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null }
+
+                  />
+                : null
                 }
 
-                {this.state.allCorrect ?
-                  null
-                  :
-                  <SentencePromptContainer handleSubmit={this.handleSubmit} sentence={this.state.sentence} dragStart={this.dragStart} allowDrop={this.allowDrop} replaceWord={this.replaceWord} />
+                {this.state.allCorrect
+                  ? null
+                  : <SentencePromptContainer
+                      handleSubmit={this.handleSubmit}
+                      sentence={this.state.sentence}
+                      dragStart={this.dragStart}
+                      allowDrop={this.allowDrop}
+                      replaceWord={this.replaceWord}
+                    />
                 }
 
               </div>
-            <div className="card-action">
-              {this.state.allCorrect ? <a className="waves-effect waves-light btn" onClick={this.loadNext} href="/next"> Next&#8594;</a> : <a href="" className="waves-effect waves-light btn" onClick={this.handleSubmit}> submit </a> }
+              <div className="card-action">
+                {this.state.allCorrect
+                  ? <a className="waves-effect waves-light btn" onClick={this.loadNext} href="/next"> Next&#8594;</a>
+                  : <a href="" className="waves-effect waves-light btn" onClick={this.handleSubmit}> submit </a> }
+              </div>
+            </div>
+            <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
+          </div>
+
+          <div className="col s6">
+            <div className="dropBoxContainer" id=''>
+              { ['1','3','5'].indexOf(this.props.lessonId) >= 0
+                ? <div className="card small">
+                    <span className="card-title senLabel">Subjects</span>
+                    <div
+                      className="card-content senDb"
+                      onDrop={this.dropInDropBox}
+                      onDragOver={this.allowDrop}
+                      ref="subjectBox">
+                    </div>
+                  </div>
+                : null
+              }
+              { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
+                  <div className="card small">
+                    <span className="card-title senLabel">Verbs</span>
+                    <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="verbBox" />
+                  </div>
+
+                : null
+              }
+              { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
+                <div className="card small">
+                  <span className="card-title senLabel">Objects</span>
+                  <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="objectBox" />
+                </div>
+                : null
+              }
             </div>
           </div>
-          <StatusBar streak={this.state.streak} totalCorrect={this.state.totalCorrect} totalAttempts={this.state.totalAttempts} />
-        </div>
-
-        <div className="col s6">
-
-          <div className="dropBoxContainer" id=''>
-            { ['1','3','5'].indexOf(this.props.lessonId) >= 0 ?
-              <div className="card small">
-                <span className="card-title senLabel">Subjects</span>
-                <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="subjectBox">
-                </div>
-
-              </div>
-              : null
-            }
-            { ['2','3','5'].indexOf(this.props.lessonId)  >= 0 ?
-                <div className="card small">
-                  <span className="card-title senLabel">Verbs</span>
-                  <div className="card-content senDb" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} ref="verbBox" />
-                </div>
-
-              : null
-            }
-            { ['4','5'].indexOf(this.props.lessonId) >= 0 ?
-              <div>
-                <div className="dbTitle"> objects </div>
-                <div ref="objectBox" id="verbDropBox" className="dropBox" onDrop={this.dropInDropBox} onDragOver={this.allowDrop} />
-              </div>
-              : null
-            }
-          </div>
-
-
-        </div>
 
           <Glossary />
         </div>
       </div>
-
-      </div>
+    </div>
     )
   }
 }
-
-
-// <OpeningPrompt unitId={this.props.unitId} lessonId={this.props.lessonId}/>
