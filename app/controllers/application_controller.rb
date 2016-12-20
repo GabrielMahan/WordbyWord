@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
 
+  def demo
+    # redirect_to ""
+  end
+
   def dashboard
     if current_user.status == "Teacher"
       redirect_to "/teachers/#{current_user.id}"

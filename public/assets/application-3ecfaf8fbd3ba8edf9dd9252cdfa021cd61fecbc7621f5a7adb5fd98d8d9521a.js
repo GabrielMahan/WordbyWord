@@ -37761,45 +37761,151 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var DropBoxes = (function (_React$Component) {
+  _inherits(DropBoxes, _React$Component);
+
+  function DropBoxes() {
+    _classCallCheck(this, DropBoxes);
+
+    _get(Object.getPrototypeOf(DropBoxes.prototype), "constructor", this).call(this);
+    this.dropInDropBox = this.dropInDropBox.bind(this);
+    this.allowDrop = this.allowDrop.bind(this);
+  }
+
+  _createClass(DropBoxes, [{
+    key: "allowDrop",
+    value: function allowDrop(ev) {
+      ev.preventDefault();
+    }
+  }, {
+    key: "dropInDropBox",
+    value: function dropInDropBox(ev) {
+      ev.preventDefault();
+      var dragged = this.props.beingDragged;
+      dragged.className = "draggable inBox";
+      ev.target.appendChild(dragged);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement(
+        "div",
+        { className: "dropBoxContainer", id: "" },
+        ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
+          "div",
+          { className: "card small shortDB" },
+          React.createElement(
+            "span",
+            { className: "card-title senLabel" },
+            "Subjects"
+          ),
+          React.createElement("div", {
+            className: "card-content senDb",
+            onDrop: this.dropInDropBox,
+            onDragOver: this.allowDrop,
+            ref: "subjectBox" })
+        ) : null,
+        ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
+          "div",
+          { className: "card small shortDB" },
+          React.createElement(
+            "span",
+            { className: "card-title senLabel" },
+            "Verbs"
+          ),
+          React.createElement("div", {
+            className: "card-content senDb",
+            onDrop: this.dropInDropBox,
+            onDragOver: this.allowDrop,
+            ref: "verbBox" })
+        ) : null,
+        ['4', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
+          "div",
+          { className: "card small shortDB" },
+          React.createElement(
+            "span",
+            { className: "card-title senLabel" },
+            "Objects"
+          ),
+          React.createElement("div", {
+            className: "card-content senDb",
+            onDrop: this.dropInDropBox,
+            onDragOver: this.allowDrop,
+            ref: "objectBox"
+          })
+        ) : null
+      );
+    }
+  }]);
+
+  return DropBoxes;
+})(React.Component);
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var Feedback = (function (_React$Component) {
   _inherits(Feedback, _React$Component);
 
   function Feedback() {
     _classCallCheck(this, Feedback);
 
-    _get(Object.getPrototypeOf(Feedback.prototype), "constructor", this).apply(this, arguments);
+    _get(Object.getPrototypeOf(Feedback.prototype), 'constructor', this).call(this);
+    this.state = { s: false, v: false, o: false };
   }
 
   _createClass(Feedback, [{
-    key: "render",
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (['1', '3', '5'].indexOf(this.props.lessonId) >= 0) {
+        this.setState({ s: true });
+      }
+      if (['2', '3', '5'].indexOf(this.props.lessonId) >= 0) {
+        this.setState({ v: true });
+      }
+      if (['4', '5'].indexOf(this.props.lessonId) >= 0) {
+        this.setState({ o: true });
+      }
+
+      // debugger;
+    }
+  }, {
+    key: 'render',
     value: function render() {
       return React.createElement(
-        "div",
-        { id: "feedback" },
+        'div',
+        { id: 'feedback' },
         this.props.allCorrect ? React.createElement(
-          "div",
+          'div',
           null,
-          " You got it! "
+          ' You got it! '
         ) : React.createElement(
-          "div",
+          'div',
           null,
-          " Incorrect. View your feedback below. "
+          ' Incorrect. View your feedback below. '
         ),
-        React.createElement(FeedbackMessage, {
+        this.state.s ? React.createElement(FeedbackMessage, {
           correct: this.props.subjectsCorrect,
-          wordPart: "subjects", included: this.props.subjectsIncluded,
+          wordPart: 'subjects',
+          included: this.props.subjectsIncluded,
           required: this.props.subjects
-        }),
-        React.createElement(FeedbackMessage, {
+        }) : null,
+        this.state.v ? React.createElement(FeedbackMessage, {
           correct: this.props.verbsCorrect,
-          wordPart: "subjects", included: this.props.verbsIncluded,
+          wordPart: 'verbs',
+          included: this.props.verbsIncluded,
           required: this.props.verbs
-        }),
-        React.createElement(FeedbackMessage, {
+        }) : null,
+        this.state.o ? React.createElement(FeedbackMessage, {
           correct: this.props.objectsCorrect,
-          wordPart: "subjects", included: this.props.objectsIncluded,
+          wordPart: 'objects',
+          included: this.props.objectsIncluded,
           required: this.props.objects
-        })
+        }) : null
       );
     }
   }]);
@@ -37838,7 +37944,9 @@ var FeedbackMessage = (function (_React$Component) {
         ) : React.createElement(
           "div",
           { className: "", id: "" },
-          "Your subject box wasn't quite right.",
+          "Your ",
+          this.props.wordPart,
+          " box wasn't quite right.",
           this.props.included.length > 0 ? React.createElement(
             "div",
             null,
@@ -38111,11 +38219,12 @@ var GlossarySubjects = (function (_React$Component) {
   return GlossarySubjects;
 })(React.Component);
 function handleSubmit(event) {
+  debugger;
   event.preventDefault();
   var instantFeedback = { subjects: false, verbs: false, objects: false };
 
   if (this.props.lessonId == 1 || this.props.lessonId == 3 || this.props.lessonId == 5) {
-    var wordsInSubjectBox = Array.from(this.refs.subjectBox.children).map(function (element) {
+    var wordsInSubjectBox = Array.from(this.refs.dropBoxes.refs.subjectBox.children).map(function (element) {
       return element.innerText;
     });
 
@@ -38126,7 +38235,7 @@ function handleSubmit(event) {
   }
 
   if (this.props.lessonId == 2 || this.props.lessonId == 3 || this.props.lessonId == 5) {
-    var wordsInVerbBox = Array.from(this.refs.verbBox.children).map(function (element) {
+    var wordsInVerbBox = Array.from(this.refs.dropBoxes.refs.verbBox.children).map(function (element) {
       return element.innerText;
     });
 
@@ -38137,7 +38246,7 @@ function handleSubmit(event) {
   }
 
   if (this.props.lessonId == 4 || this.props.lessonId == 5) {
-    var wordsInObjectBox = Array.from(this.refs.objectBox.children).map(function (element) {
+    var wordsInObjectBox = Array.from(this.refs.dropBoxes.refs.objectBox.children).map(function (element) {
       return element.innerText;
     });
 
@@ -38220,6 +38329,36 @@ function handleSubmit(event) {
 
   this.setState({ displayFeedback: true });
 }
+
+function loadNext(ev) {
+  var _this = this;
+
+  ev.preventDefault();
+  this.setState({
+    sentence: this.state.nextSet.sentence,
+    svos: this.state.nextSet.svos,
+    svoIds: this.state.nextSet.svoIds,
+    allCorrect: false,
+    displayFeedback: false,
+    svoFeedback: {
+      subjectsCorrect: false,
+      verbsCorrect: false,
+      objectsCorrect: false
+    }
+  });
+  $.get('/' + this.props.lessonId + '/UnitOneSentence').done(function (response) {
+    _this.setState({ nextSet: response });
+  });
+  if (['1', '3', '5'].indexOf(this.props.lessonId) >= 0) {
+    this.refs.dropBoxes.refs.subjectBox.innerHTML = '';
+  }
+  if (['2', '3', '5'].indexOf(this.props.lessonId) >= 0) {
+    this.refs.dropBoxes.refs.verbBox.innerHTML = '';
+  }
+  if (['4', '5'].indexOf(this.props.lessonId) >= 0) {
+    this.refs.dropBoxes.refs.objectBox.innerHTML = '';
+  }
+}
 ;
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -38265,10 +38404,36 @@ var SentencePromptContainer = (function (_React$Component) {
   function SentencePromptContainer() {
     _classCallCheck(this, SentencePromptContainer);
 
-    _get(Object.getPrototypeOf(SentencePromptContainer.prototype), "constructor", this).apply(this, arguments);
+    _get(Object.getPrototypeOf(SentencePromptContainer.prototype), "constructor", this).call(this);
+    this.dropInDropBox = this.dropInDropBox.bind(this);
+    this.allowDrop = this.allowDrop.bind(this);
+    this.replaceWord = this.replaceWord.bind(this);
   }
 
   _createClass(SentencePromptContainer, [{
+    key: "allowDrop",
+    value: function allowDrop(ev) {
+      ev.preventDefault();
+    }
+  }, {
+    key: "dropInDropBox",
+    value: function dropInDropBox(ev) {
+      ev.preventDefault();
+      var dragged = this.props.beingDragged;
+      dragged.className = "draggable inBox";
+      ev.target.appendChild(dragged);
+    }
+  }, {
+    key: "replaceWord",
+    value: function replaceWord(ev) {
+      if (this.props.beingDragged.innerText === ev.target.innerText) {
+        ev.preventDefault();
+        var dragged = this.props.beingDragged;
+        dragged.className = "draggable inPrompt";
+        ev.target.appendChild(dragged);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -38293,7 +38458,13 @@ var SentencePromptContainer = (function (_React$Component) {
           )
         ),
         this.props.sentence.map(function (word, i) {
-          return React.createElement(Word, { key: i, dragFunction: _this.props.dragStart, allowDrop: _this.props.allowDrop, reDrop: _this.props.replaceWord, word: word });
+          return React.createElement(Word, {
+            key: i,
+            dragFunction: _this.props.dragStart,
+            allowDrop: _this.allowDrop,
+            reDrop: _this.replaceWord,
+            word: word
+          });
         })
       );
     }
@@ -38354,13 +38525,13 @@ var StatusBar = (function (_React$Component) {
 
   return StatusBar;
 })(React.Component);
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var UnitOne = (function (_React$Component) {
   _inherits(UnitOne, _React$Component);
@@ -38368,12 +38539,12 @@ var UnitOne = (function (_React$Component) {
   function UnitOne() {
     _classCallCheck(this, UnitOne);
 
-    _get(Object.getPrototypeOf(UnitOne.prototype), 'constructor', this).call(this);
+    _get(Object.getPrototypeOf(UnitOne.prototype), "constructor", this).call(this);
     this.state = {
       beingDragged: React.createElement(
-        'div',
+        "div",
         null,
-        '***'
+        "***"
       ),
       sentence: [],
       svos: {
@@ -38395,36 +38566,34 @@ var UnitOne = (function (_React$Component) {
         objectPromptId: 0
       }
     };
-    this.dropInDropBox = this.dropInDropBox.bind(this);
     this.dragStart = this.dragStart.bind(this);
     this.handleSubmit = handleSubmit.bind(this);
-    this.replaceWord = this.replaceWord.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.loadNext = this.loadNext.bind(this);
+    this.loadNext = loadNext.bind(this);
   }
 
   _createClass(UnitOne, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       var _this = this;
 
-      $.get('/' + this.props.lessonId + '/UnitOneSentence').done(function (response) {
+      $.get("/" + this.props.lessonId + "/UnitOneSentence").done(function (response) {
         _this.setState({
           sentence: response.sentence,
           svos: response.svos,
           svoIds: response.svoIds
         });
       });
-      $.get('/' + this.props.lessonId + '/UnitOneSentence').done(function (response) {
+      $.get("/" + this.props.lessonId + "/UnitOneSentence").done(function (response) {
         _this.setState({ nextSet: response });
       });
     }
   }, {
-    key: 'componentWillUpdate',
+    key: "componentWillUpdate",
     value: function componentWillUpdate() {
       var _this2 = this;
 
-      var streakURL = '/units/' + this.props.unitId + '/lessons/' + this.props.lessonId + '/attempts/streak';
+      var streakURL = "/units/" + this.props.unitId + "/lessons/" + this.props.lessonId + "/attempts/streak";
       $.get(streakURL).done(function (response) {
         if (_this2.state.totalAttempts != response.totalAttempts) {
           _this2.setState({ streak: response.streak, totalCorrect: response.totalCorrect, totalAttempts: response.totalAttempts });
@@ -38432,174 +38601,91 @@ var UnitOne = (function (_React$Component) {
       });
     }
   }, {
-    key: 'loadNext',
-    value: function loadNext(ev) {
-      var _this3 = this;
-
-      ev.preventDefault();
-      this.setState({
-        sentence: this.state.nextSet.sentence,
-        svos: this.state.nextSet.svos,
-        svoIds: this.state.nextSet.svoIds,
-        allCorrect: false,
-        displayFeedback: false,
-        svoFeedback: {
-          subjectsCorrect: false,
-          verbsCorrect: false,
-          objectsCorrect: false
-        }
-      });
-      $.get('/' + this.props.lessonId + '/UnitOneSentence').done(function (response) {
-        _this3.setState({ nextSet: response });
-      });
-      if (['1', '3', '5'].indexOf(this.props.lessonId) >= 0) {
-        this.refs.subjectBox.innerHTML = '';
-      }
-      if (['2', '3', '5'].indexOf(this.props.lessonId) >= 0) {
-        this.refs.verbBox.innerHTML = '';
-      }
-      if (['4', '5'].indexOf(this.props.lessonId) >= 0) {
-        this.refs.objectBox.innerHTML = '';
-      }
-    }
-  }, {
-    key: 'replaceWord',
-    value: function replaceWord(ev) {
-      if (this.state.beingDragged.innerText === ev.target.innerText) {
-        ev.preventDefault();
-        var dragged = this.state.beingDragged;
-        dragged.className = "draggable inPrompt";
-        ev.target.appendChild(dragged);
-      }
-    }
-  }, {
-    key: 'dragStart',
+    key: "dragStart",
     value: function dragStart(ev) {
       this.setState({
         beingDragged: ev.target
       });
     }
   }, {
-    key: 'allowDrop',
-    value: function allowDrop(ev) {
-      ev.preventDefault();
-    }
-  }, {
-    key: 'dropInDropBox',
-    value: function dropInDropBox(ev) {
-      ev.preventDefault();
-      var dragged = this.state.beingDragged;
-      dragged.className = "draggable inBox";
-      ev.target.appendChild(dragged);
-    }
-  }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(NavBar, { userSignedIn: this.props.userSignedIn }),
         React.createElement(
-          'div',
-          { className: 'unitOneContainer' },
+          "div",
+          { className: "unitOneContainer" },
           React.createElement(
-            'div',
-            { className: 'row' },
+            "div",
+            { className: "row" },
             React.createElement(
-              'div',
-              { className: 'col s6' },
+              "div",
+              { className: "col s6" },
               React.createElement(
-                'div',
-                { className: 'card large' },
+                "div",
+                { className: "card large" },
                 React.createElement(
-                  'div',
-                  { className: 'card-content' },
+                  "div",
+                  { className: "card-content" },
                   React.createElement(
-                    'span',
-                    { className: 'card-title' },
-                    'Sort the words in the sentence'
+                    "span",
+                    { className: "card-title" },
+                    "Sort the words in the sentence"
                   ),
                   this.state.displayFeedback ? React.createElement(Feedback, {
-
                     allCorrect: this.state.allCorrect,
-                    subjects: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null,
-                    subjectsCorrect: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null,
-                    subjectsIncluded: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null,
+                    lessonId: this.props.lessonId,
 
-                    verbs: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null,
-                    verbsCorrect: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null,
-                    verbsIncluded: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null,
+                    subjects: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.subjects : null,
+                    subjectsCorrect: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.subjectsCorrect : null,
+                    subjectsIncluded: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.subjectBox.children : null,
 
-                    objects: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjects : null,
-                    objectsCorrect: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.subjectsCorrect : null,
-                    objectsIncluded: ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.subjectBox.children : null
+                    verbs: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.verbs : null,
+                    verbsCorrect: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.verbsCorrect : null,
+                    verbsIncluded: ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.verbBox.children : null,
 
+                    objects: ['4', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svos.objects : null,
+                    objectsCorrect: ['4', '5'].indexOf(this.props.lessonId) >= 0 ? this.state.svoFeedback.objectsCorrect : null,
+                    objectsIncluded: ['4', '5'].indexOf(this.props.lessonId) >= 0 ? this.refs.dropBoxes.refs.objectBox.children : null
                   }) : null,
                   this.state.allCorrect ? null : React.createElement(SentencePromptContainer, {
                     handleSubmit: this.handleSubmit,
                     sentence: this.state.sentence,
                     dragStart: this.dragStart,
-                    allowDrop: this.allowDrop,
-                    replaceWord: this.replaceWord
+                    replaceWord: this.replaceWord,
+                    beingDragged: this.state.beingDragged
                   })
                 ),
                 React.createElement(
-                  'div',
-                  { className: 'card-action' },
+                  "div",
+                  { className: "card-action" },
                   this.state.allCorrect ? React.createElement(
-                    'a',
-                    { className: 'waves-effect waves-light btn', onClick: this.loadNext, href: '/next' },
-                    ' Next→'
+                    "a",
+                    { className: "waves-effect waves-light btn", onClick: this.loadNext, href: "/next" },
+                    " Next→"
                   ) : React.createElement(
-                    'a',
-                    { href: '', className: 'waves-effect waves-light btn', onClick: this.handleSubmit },
-                    ' submit '
+                    "a",
+                    { href: "", className: "waves-effect waves-light btn", onClick: this.handleSubmit },
+                    " submit "
                   )
                 )
               ),
-              React.createElement(StatusBar, { streak: this.state.streak, totalCorrect: this.state.totalCorrect, totalAttempts: this.state.totalAttempts })
+              React.createElement(StatusBar, {
+                streak: this.state.streak,
+                totalCorrect: this.state.totalCorrect,
+                totalAttempts: this.state.totalAttempts })
             ),
             React.createElement(
-              'div',
-              { className: 'col s6' },
-              React.createElement(
-                'div',
-                { className: 'dropBoxContainer', id: '' },
-                ['1', '3', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
-                  'div',
-                  { className: 'card small' },
-                  React.createElement(
-                    'span',
-                    { className: 'card-title senLabel' },
-                    'Subjects'
-                  ),
-                  React.createElement('div', {
-                    className: 'card-content senDb',
-                    onDrop: this.dropInDropBox,
-                    onDragOver: this.allowDrop,
-                    ref: 'subjectBox' })
-                ) : null,
-                ['2', '3', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
-                  'div',
-                  { className: 'card small' },
-                  React.createElement(
-                    'span',
-                    { className: 'card-title senLabel' },
-                    'Verbs'
-                  ),
-                  React.createElement('div', { className: 'card-content senDb', onDrop: this.dropInDropBox, onDragOver: this.allowDrop, ref: 'verbBox' })
-                ) : null,
-                ['4', '5'].indexOf(this.props.lessonId) >= 0 ? React.createElement(
-                  'div',
-                  { className: 'card small' },
-                  React.createElement(
-                    'span',
-                    { className: 'card-title senLabel' },
-                    'Objects'
-                  ),
-                  React.createElement('div', { className: 'card-content senDb', onDrop: this.dropInDropBox, onDragOver: this.allowDrop, ref: 'objectBox' })
-                ) : null
-              )
+              "div",
+              { className: "col s6" },
+              React.createElement(DropBoxes, {
+                ref: "dropBoxes",
+                lessonId: this.props.lessonId,
+                beingDragged: this.state.beingDragged,
+                lessonId: this.props.lessonId
+              })
             ),
             React.createElement(Glossary, null)
           )

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :assignments
 
   #demo
-  # get '/demo', to: 
+  get '/demo', to: 'application#demo'
 
   #DASHBOARD ROUTES
   get 'students/:id/info', to: 'students#info'

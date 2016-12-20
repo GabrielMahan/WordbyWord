@@ -36,6 +36,17 @@ a {
   color: oldlace;
 }
 
+.card .card-image img.fade-link {
+  opacity: .4;
+  transition: 1s;
+  &:hover {
+    opacity: 1;
+    border: 15px solid white;
+    transform: scale(.8);
+
+  }
+}
+
 .nav {
   font-size: 0.875em;
 }

@@ -18605,29 +18605,34 @@ label {
 input {
   color: black;
 }
-/* line 2, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 1, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+.card.small.shortDB {
+  height: 200px;
+}
+
+/* line 4, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .unitOneContainer {
   margin-top: 100px;
 }
 
-/* line 6, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 8, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .dropBoxContainer {
   padding: 30px;
 }
 
-/* line 10, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 12, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .senLabel {
   padding: 10px;
   position: absolute;
 }
 
-/* line 15, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 17, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .card-content.senDb {
   height: 280px;
   padding-top: 60px;
 }
 
-/* line 20, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 22, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .draggable {
   color: oldlace;
   font-family: 'Oswald', sans-serif;
@@ -18641,14 +18646,14 @@ input {
   z-index: 3;
 }
 
-/* line 34, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 36, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .inPrompt {
   position: absolute;
   left: 0px;
   top: 0px;
 }
 
-/* line 40, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 42, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .inBox {
   position: relative;
   float: left;
@@ -18656,7 +18661,7 @@ input {
   margin-left: 10px;
 }
 
-/* line 47, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
+/* line 49, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/gameplay/gameplay.scss */
 .dragFootprint {
   position: relative;
   z-index: 0;
