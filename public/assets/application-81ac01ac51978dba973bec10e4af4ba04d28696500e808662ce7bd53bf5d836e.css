@@ -18375,16 +18375,30 @@ a {
 }
 
 /* line 40, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+.card .card-image img.fade-link {
+  opacity: .4;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+/* line 43, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+.card .card-image img.fade-link:hover {
+  opacity: 1;
+  border: 15px solid white;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+/* line 51, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .nav {
   font-size: 0.875em;
 }
 
-/* line 44, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 55, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .collapse {
   background-color: #f2f2f2;
 }
 
-/* line 49, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 61, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .navbar-buttons {
   display: block;
   text-align: center;
@@ -18395,12 +18409,12 @@ a {
   margin: 0 0 3 0;
   padding: 0;
 }
-/* line 58, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 70, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .navbar-buttons:hover {
   background-color: #D0D0D0;
 }
 
-/* line 64, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 76, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .navbar-links {
   font-size: 1.0em;
   vertical-align: center;
@@ -18410,22 +18424,22 @@ a {
   background: none;
   border: none;
 }
-/* line 72, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 84, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .navbar-links:hover {
   color: white;
 }
 
-/* line 77, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 89, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 h1.navbar-title {
   color: dodgerblue;
 }
 
-/* line 81, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 93, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .header {
   font-size: 250%;
 }
 
-/* line 85, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 97, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .logout-button {
   font-size: 1.0em;
   line-height: 32px;
@@ -18436,17 +18450,17 @@ h1.navbar-title {
   background: none;
   border: none;
 }
-/* line 94, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 106, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .logout-button:hover {
   color: white;
 }
 
-/* line 99, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 111, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 #dashboard-link {
   padding-top: 22.5px;
 }
 
-/* line 103, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
+/* line 115, /home/gabriel/finalProject/nextGEN_grammar/app/assets/stylesheets/application.css.scss */
 .navbar-title {
   display: inline-block;
 }
