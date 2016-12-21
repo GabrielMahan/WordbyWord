@@ -38219,42 +38219,47 @@ var GlossarySubjects = (function (_React$Component) {
   return GlossarySubjects;
 })(React.Component);
 function handleSubmit(event) {
-  debugger;
   event.preventDefault();
   var instantFeedback = { subjects: false, verbs: false, objects: false };
+  var stateFeedback = this.state.svoFeedback;
 
+  // subjects
   if (this.props.lessonId == 1 || this.props.lessonId == 3 || this.props.lessonId == 5) {
     var wordsInSubjectBox = Array.from(this.refs.dropBoxes.refs.subjectBox.children).map(function (element) {
       return element.innerText;
     });
 
     if (wordsInSubjectBox.sort().join() === this.state.svos.subjects.sort().join()) {
-      this.setState({ subjectsCorrect: true });
+      stateFeedback.subjectsCorrect = true;
       instantFeedback.subjects = true;
     }
   }
 
+  // verbs
   if (this.props.lessonId == 2 || this.props.lessonId == 3 || this.props.lessonId == 5) {
     var wordsInVerbBox = Array.from(this.refs.dropBoxes.refs.verbBox.children).map(function (element) {
       return element.innerText;
     });
 
     if (wordsInVerbBox.sort().join() === this.state.svos.verbs.sort().join()) {
-      this.setState({ verbsCorrect: true });
+      stateFeedback.verbsCorrect = true;
       instantFeedback.verbs = true;
     }
   }
 
+  // Objects
   if (this.props.lessonId == 4 || this.props.lessonId == 5) {
     var wordsInObjectBox = Array.from(this.refs.dropBoxes.refs.objectBox.children).map(function (element) {
       return element.innerText;
     });
 
     if (wordsInObjectBox.sort().join() === this.state.svos.objects.sort().join()) {
-      this.setState({ objectsCorrect: true });
+      stateFeedback.verbsCorrect = true;
       instantFeedback.objects = true;
     }
   }
+
+  this.setState({ svoFeedback: stateFeedback });
 
   if (this.props.lessonId == 1 && instantFeedback.subjects) {
     this.setState({ allCorrect: true });
@@ -38328,6 +38333,7 @@ function handleSubmit(event) {
   }
 
   this.setState({ displayFeedback: true });
+  debugger;
 }
 
 function loadNext(ev) {
