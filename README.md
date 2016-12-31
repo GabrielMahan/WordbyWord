@@ -18,3 +18,6 @@ Word-by-word aims to fill the void with a robust, self-differentiating set of in
 
 
 <i class="icon-cog"></i>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
