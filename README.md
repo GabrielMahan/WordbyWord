@@ -15,3 +15,6 @@ Word-by-word aims to fill the void with a robust, self-differentiating set of in
 ## Updates
 * Word-by-word is undergoing extensive remodeling-
 * Styling is still inconsistent, but expect frequent changes.
+
+
+<i class="icon-cog"></i>

@@ -31,7 +31,10 @@ class SentencePromptContainer extends React.Component {
     return (
       <div id="wordBox">
         <div id="sentenceWrap">
-          <h3 className="sentence"> Sentence: <em>"{ this.props.sentence.join(" ") }"</em></h3>
+          {this.props.displayFeedback
+            ? null
+            : <h3 className="sentence"> Sentence: <em>"{ this.props.sentence.join(" ") }"</em></h3>
+          }
         </div>
 
         {this.props.sentence.map( (word, i) => {

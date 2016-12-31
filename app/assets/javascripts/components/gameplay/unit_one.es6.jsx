@@ -67,7 +67,10 @@ class UnitOne extends React.Component {
           <div className="col s6">
             <div className="card large">
               <div className="card-content">
-                <span className="card-title">Sort the words in the sentence</span>
+                {this.state.displayFeedback
+                  ?  <span className="card-title"> {this.state.sentence.join(' ')} </span>
+                  :  <span className="card-title">Sort the words in the sentence into the boxes at the right</span>
+                }
 
                 { this.state.displayFeedback ?
                   <Feedback
@@ -92,6 +95,7 @@ class UnitOne extends React.Component {
                 {this.state.allCorrect
                   ? null
                   : <SentencePromptContainer
+                      displayFeedback={this.state.displayFeedback}
                       handleSubmit={this.handleSubmit}
                       sentence={this.state.sentence}
                       dragStart={this.dragStart}
